@@ -1,4 +1,6 @@
-﻿namespace BattleShip.BLL.Requests
+﻿using System;
+
+namespace BattleShip.BLL.Requests
 {
     public class Coordinate
     {
@@ -20,6 +22,12 @@
 
             return otherCoordinate.XCoordinate == this.XCoordinate &&
                    otherCoordinate.YCoordinate == this.YCoordinate;
+        }
+
+        public override int GetHashCode()
+        {
+            string uniqueHash = this.XCoordinate.ToString() + this.YCoordinate.ToString() + "00";
+            return (Convert.ToInt32(uniqueHash));
         }
     }
 }
