@@ -1,0 +1,109 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+using BattleShip.BLL.Requests;
+using BattleShip.BLL.Responses;
+using BattleShip.BLL.Ships;
+
+namespace BattleShip.UI
+{
+    public class PlaceShips
+    {
+        public void PlaceTheShips(Player player)
+        {
+            PlaceShipRequest ShipToPlace = new PlaceShipRequest();
+
+            for (int i = 0; i < 5; i++)
+            {
+                ShipPlacement response = ShipPlacement.NotEnoughSpace;
+                do
+                {
+                    Console.WriteLine("Place your {0} on the x axis with a letter: ", ShipToPlace.ShipType);
+                    string userinputXCoord = Console.ReadLine();
+                    int Xcoord = 0;
+
+                    switch (userinputXCoord.ToUpper())
+                    {
+                        case "A":
+                            Xcoord = 1;
+                            break;
+                        case "B":
+                            Xcoord = 2;
+                            break;
+                        case "C":
+                            Xcoord = 3;
+                            break;
+                        case "D":
+                            Xcoord = 4;
+                            break;
+                        case "E":
+                            Xcoord = 5;
+                            break;
+                        case "F":
+                            Xcoord = 6;
+                            break;
+                        case "G":
+                            Xcoord = 7;
+                            break;
+                        case "H":
+                            Xcoord = 8;
+                            break;
+                        case "I":
+                            Xcoord = 9;
+                            break;
+                        case "J":
+                            Xcoord = 10;
+                            break;
+                    }
+
+                    Console.WriteLine("\nPlace your {0} on the y axis with a number: ", ShipToPlace.ShipType);
+                    string inputYCoord = Console.ReadLine();
+
+                    int Ycoord = int.Parse(inputYCoord);
+
+                    Console.WriteLine("\nWhat direction should your carrier point? (Up, Down, Right, Left): ");
+                    string inputCarrierDirection = Console.ReadLine();
+                    ShipDirection myDirection = ShipDirection.Left;
+                    switch (inputCarrierDirection.ToUpper())
+                    {
+                        case "UP":
+                        case "U":
+                            myDirection = ShipDirection.Up;
+                            break;
+                        case "DOWN":
+                        case "D":
+                            myDirection = ShipDirection.Down;
+                            break;
+                        case "RIGHT":
+                        case "R":
+                            myDirection = ShipDirection.Right;
+                            break;
+                    }
+
+                    ShipToPlace.Direction = myDirection;
+
+                    ShipToPlace.Coordinate = new Coordinate(Xcoord, Ycoord);
+
+                    response = player.playerBoard.PlaceShip(ShipToPlace);
+
+                    if (response == ShipPlacement.NotEnoughSpace)
+                    {
+                        Console.WriteLine("\nThere isn't enough room.  Try again.\n");
+                    }
+                    if (response == ShipPlacement.Overlap)
+                    {
+                        Console.WriteLine("\nThat ship overlaps another.  Please try again.\n");
+                    }
+
+                } while (response != ShipPlacement.Ok);      
+                
+                ShipToPlace.ShipType++;
+
+                Console.WriteLine("\n");
+            }
+        }
+    }
+}
