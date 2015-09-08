@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BattleShip.BLL.Requests;
+using BattleShip.BLL.Responses;
 
 namespace BattleShip.UI
 {
@@ -87,19 +88,64 @@ namespace BattleShip.UI
 
                     if (p.playerBoard.ShotHistory.ContainsKey(coordinateToCheck))
                     {
-                        Console.WriteLine("Hi");
-                    }
-                    else if (coordinateToCheck.XCoordinate == 1)
-                    {
-                        Console.Write(y + " -  ");
+                        if (coordinateToCheck.XCoordinate == 1)
+                        {
+                            var value = p.playerBoard.ShotHistory[coordinateToCheck];
+                            if (value.Equals(ShotHistory.Hit))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write(y + " H  ");
+                                Console.ResetColor();
+                            }
+                            else if (value.Equals(ShotHistory.Miss))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.Write(y + " M  ");
+                                Console.ResetColor();
+                            }
+                            else
+                            {
+                                Console.Write(y + " U  ");
+                            }
+                        }
+                        else
+                        {
+                            var value = p.playerBoard.ShotHistory[coordinateToCheck];
+                            if (value.Equals(ShotHistory.Hit))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("  H  ");
+                                Console.ResetColor();
+                            }
+                            else if (value.Equals(ShotHistory.Miss))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.Write("  M  ");
+                                Console.ResetColor();
+                            }
+                            else
+                            {
+                                Console.Write("  U  ");
+                            }
+                        }
+                        
                     }
                     else
                     {
-                        Console.Write("  -  ");
+                        if (coordinateToCheck.XCoordinate == 1)
+                        {
+                            Console.Write(y + " -  ");
+                        }
+                        else
+                        {
+                            Console.Write("  -  ");
+                        }
                     }
                 }
             }
+            Console.ReadLine();
         }
+
 
     }
 }

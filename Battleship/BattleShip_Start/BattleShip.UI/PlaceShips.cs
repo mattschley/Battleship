@@ -105,5 +105,52 @@ namespace BattleShip.UI
                 Console.WriteLine("\n");
             }
         }
+
+        public void PlaceTheShipsAuto(Player player)
+        {
+            var request = new PlaceShipRequest()
+            {
+                Coordinate = new Coordinate(4, 4),
+                Direction = ShipDirection.Right,
+                ShipType = ShipType.Carrier
+            };
+
+            player.playerBoard.PlaceShip(request);
+            var request1 = new PlaceShipRequest()
+            {
+                Coordinate = new Coordinate(10, 6),
+                Direction = ShipDirection.Down,
+                ShipType = ShipType.Battleship
+            };
+
+            player.playerBoard.PlaceShip(request1);
+
+            var request2 = new PlaceShipRequest()
+            {
+                Coordinate = new Coordinate(3, 5),
+                Direction = ShipDirection.Left,
+                ShipType = ShipType.Submarine
+            };
+
+            player.playerBoard.PlaceShip(request2);
+
+            var request3 = new PlaceShipRequest()
+            {
+                Coordinate = new Coordinate(3, 3),
+                Direction = ShipDirection.Up,
+                ShipType = ShipType.Cruiser
+            };
+
+            player.playerBoard.PlaceShip(request3);
+
+            var request4 = new PlaceShipRequest()
+            {
+                Coordinate = new Coordinate(1, 8),
+                Direction = ShipDirection.Right,
+                ShipType = ShipType.Destroyer
+            };
+
+            player.playerBoard.PlaceShip(request4);
+        }
     }
 }
