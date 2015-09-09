@@ -21,12 +21,12 @@ namespace BattleShip.UI
 
         public void SetUpGameAuto(WorkFlowObject wf)
         {
-            wf.ShowBoard(wf.p1);
+            //wf.ShowBoard(wf.p1);
             SetUpPlayerAutomatically(wf.p1);
 
             Console.Clear();
 
-            wf.ShowBoard(wf.p2);
+           // wf.ShowBoard(wf.p2);
             SetUpPlayerAutomatically(wf.p2);
 
         }

@@ -74,6 +74,7 @@ namespace BattleShip.UI
 
         public void ShowBoard(Player p)
         {
+            Console.WriteLine("\n");
             Console.WriteLine("  A    B    C    D    E    F    G    H    I    J");
             for (int y = 1; y < 11; y++)
             {
@@ -143,7 +144,7 @@ namespace BattleShip.UI
                     }
                 }
             }
-            Console.ReadLine();
+            
         }
 
 
