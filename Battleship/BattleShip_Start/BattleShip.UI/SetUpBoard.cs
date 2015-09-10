@@ -17,6 +17,8 @@ namespace BattleShip.UI
 
             wf.ShowBoard(wf.p2);
             SetupPlayer(wf.p2);
+
+            Console.Clear();
         }
 
         public void SetUpGameAuto(WorkFlowObject wf)
@@ -29,6 +31,7 @@ namespace BattleShip.UI
            // wf.ShowBoard(wf.p2);
             SetUpPlayerAutomatically(wf.p2);
 
+            Console.Clear();
         }
 
         private void SetupPlayer(Player player)

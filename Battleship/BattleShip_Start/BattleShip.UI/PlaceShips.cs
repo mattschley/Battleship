@@ -61,12 +61,20 @@ namespace BattleShip.UI
 
                     Console.WriteLine("\nPlace your {0} on the y axis with a number: ", ShipToPlace.ShipType);
                     string inputYCoord = Console.ReadLine();
-
-                    int Ycoord = int.Parse(inputYCoord);
-
+                    var new_string = 0;
+                    if (int.TryParse(inputYCoord, out new_string))
+                    {
+                        new_string = new_string;
+                    }
+                    else
+                    {
+                        new_string = 0;
+                    }
+                    //int Ycoord = int.Parse(inputYCoord);
+                    int Ycoord = new_string;
                     Console.WriteLine("\nWhat direction should your carrier point? (Up, Down, Right, Left): ");
                     string inputCarrierDirection = Console.ReadLine();
-                    ShipDirection myDirection = ShipDirection.Left;
+                    ShipDirection myDirection = 0;
                     switch (inputCarrierDirection.ToUpper())
                     {
                         case "UP":
@@ -80,6 +88,10 @@ namespace BattleShip.UI
                         case "RIGHT":
                         case "R":
                             myDirection = ShipDirection.Right;
+                            break;
+                        case "LEFT":
+                        case "L":
+                            myDirection = ShipDirection.Left;
                             break;
                     }
 

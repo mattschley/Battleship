@@ -22,6 +22,7 @@ namespace BattleShip.UI
 
         public static void Play()
         {
+            Console.Clear();
             WorkFlowObject wf = new WorkFlowObject
             {
 
@@ -46,11 +47,11 @@ namespace BattleShip.UI
 
             Console.WriteLine("{0} vs {1}\n", wf.p1.playerName, wf.p2.playerName);
 
-            //SetUpBoard SetItUp = new SetUpBoard();
-            //SetItUp.SetUpGame(wf);
+            SetUpBoard SetItUp = new SetUpBoard();
+            SetItUp.SetUpGame(wf);
 
-            SetUpBoard SetItUpHard = new SetUpBoard();
-            SetItUpHard.SetUpGameAuto(wf);
+            //SetUpBoard SetItUpHard = new SetUpBoard();
+            //SetItUpHard.SetUpGameAuto(wf);
             //Console.ReadLine();
 
 
@@ -67,7 +68,7 @@ namespace BattleShip.UI
                         // player 1 
                         Console.WriteLine("{0}, press enter to show your board.", wf.p1.playerName);
                         Console.ReadLine();
-                        wf.ShowBoard(wf.p1);
+                        wf.ShowBoard(wf.p2);
                         Console.WriteLine("\n");
                         Console.WriteLine("{0}, enter your x coordinate: ", wf.p1.playerName);
                         var x = Console.ReadLine();
@@ -119,26 +120,32 @@ namespace BattleShip.UI
 
                         var turnCoordinate = new Coordinate(finalP1X, finaly);
 
-                        turnResponse = wf.p1.playerBoard.FireShot(turnCoordinate);
-                        Console.WriteLine(turnResponse.ShotStatus);
+                        turnResponse = wf.p2.playerBoard.FireShot(turnCoordinate);
+                       //Console.WriteLine(turnResponse.ShotStatus);
 
                         if (turnResponse.ShotStatus == ShotStatus.Hit)
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("You hit something!");
+                            Console.ResetColor();
                         }
                         else if (turnResponse.ShotStatus == ShotStatus.Miss)
                         {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("Your projectile splashes into the ocean, you missed!");
+                            Console.ResetColor();
                         }
                         else if (turnResponse.ShotStatus == ShotStatus.HitAndSunk)
                         {
-                            Console.WriteLine("You sank your opponent's {0)", turnResponse.ShipImpacted);
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("You sank your opponent's {0}", turnResponse.ShipImpacted);
+                            Console.ResetColor();
                         }
 
 
                     }
 
-                    wf.ShowBoard(wf.p1);
+                    wf.ShowBoard(wf.p2);
 
                     Console.WriteLine("\n");
                     Console.WriteLine("Press enter to clear the board");
@@ -156,7 +163,7 @@ namespace BattleShip.UI
                         // player 2 
                         Console.WriteLine("{0}, press enter to show your board.", wf.p2.playerName);
                         Console.ReadLine();
-                        wf.ShowBoard(wf.p2);
+                        wf.ShowBoard(wf.p1);
                         Console.WriteLine("\n");
                         Console.WriteLine("{0}, enter your x coordinate: ", wf.p2.playerName);
                         var x = Console.ReadLine();
@@ -196,7 +203,7 @@ namespace BattleShip.UI
                                 break;
                         }
 
-                        Console.WriteLine("{0}, enter your y coordinate: ", wf.p1.playerName);
+                        Console.WriteLine("{0}, enter your y coordinate: ", wf.p2.playerName);
                         var y = Console.ReadLine();
                         var finaly = 0;
                         int value;
@@ -208,23 +215,29 @@ namespace BattleShip.UI
 
                         var turnCoordinate = new Coordinate(finalP2X, finaly);
 
-                        turnResponse = wf.p2.playerBoard.FireShot(turnCoordinate);
-                        Console.WriteLine(turnResponse.ShotStatus);
+                        turnResponse = wf.p1.playerBoard.FireShot(turnCoordinate);
+                        //Console.WriteLine(turnResponse.ShotStatus);
 
                         if (turnResponse.ShotStatus == ShotStatus.Hit)
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("You hit something!");
+                            Console.ResetColor();
                         }
                         else if (turnResponse.ShotStatus == ShotStatus.Miss)
                         {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("Your projectile splashes into the ocean, you missed!");
+                            Console.ResetColor();
                         }
                         else if (turnResponse.ShotStatus == ShotStatus.HitAndSunk)
                         {
-                            Console.WriteLine("You sank your opponent's {0)", turnResponse.ShipImpacted);
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("You sank your opponent's {0}", turnResponse.ShipImpacted);
+                            Console.ResetColor();
                         }
                     }
-                    wf.ShowBoard(wf.p2);
+                    wf.ShowBoard(wf.p1);
 
                     Console.WriteLine("\n");
                     Console.WriteLine("Press enter to clear the board");
@@ -248,7 +261,9 @@ namespace BattleShip.UI
                         winner = wf.p2.playerName;
                     }
                     Console.Clear();
-                    Console.WriteLine("Congrats, {0}, you've sunk all your oppenent's ships, you win!", winner);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("*****Congrats, {0}, you've sunk all your oppenent's ships, you win!*****", winner);
+                    Console.ResetColor();
                     Console.ReadLine();
 
                     wf.whosNext = 3;
