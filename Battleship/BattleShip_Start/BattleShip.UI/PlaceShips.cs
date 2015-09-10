@@ -69,6 +69,7 @@ namespace BattleShip.UI
                     else
                     {
                         new_string = 0;
+
                     }
                     //int Ycoord = int.Parse(inputYCoord);
                     int Ycoord = new_string;
@@ -109,12 +110,21 @@ namespace BattleShip.UI
                     {
                         Console.WriteLine("\nThat ship overlaps another.  Please try again.\n");
                     }
+                    
 
                 } while (response != ShipPlacement.Ok);      
                 
                 ShipToPlace.ShipType++;
 
+                int howManyShipsPlaced = 0;
+                howManyShipsPlaced++;
+
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\n\nYou've placed {0} of 5 ships so far.", howManyShipsPlaced);
+                Console.ResetColor();
+
                 Console.WriteLine("\n");
+
             }
         }
 

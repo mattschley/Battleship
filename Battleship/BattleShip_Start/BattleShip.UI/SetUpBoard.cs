@@ -44,6 +44,7 @@ namespace BattleShip.UI
 
             PlaceShips placeShips = new PlaceShips();
             placeShips.PlaceTheShips(player);
+
         }
 
         private void SetUpPlayerAutomatically(Player player)
