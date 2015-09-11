@@ -147,6 +147,80 @@ namespace BattleShip.UI
             
         }
 
+        public static void ShowBoard1(Player p)
+        {
+            Console.WriteLine("\n");
+            Console.WriteLine("  A    B    C    D    E    F    G    H    I    J");
+            for (int y = 1; y < 11; y++)
+            {
+                if (y != 1)
+                {
+                    Console.WriteLine("\n");
+                }
+
+                for (int x = 1; x < 11; x++)
+                {
+                    Coordinate coordinateToCheck = new Coordinate(x, y);
+
+                    if (p.playerBoard.ShotHistory.ContainsKey(coordinateToCheck))
+                    {
+                        if (coordinateToCheck.XCoordinate == 1)
+                        {
+                            var value = p.playerBoard.ShotHistory[coordinateToCheck];
+                            if (value.Equals(ShotHistory.Hit))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write(y + " H  ");
+                                Console.ResetColor();
+                            }
+                            else if (value.Equals(ShotHistory.Miss))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.Write(y + " M  ");
+                                Console.ResetColor();
+                            }
+                            else
+                            {
+                                Console.Write(y + " U  ");
+                            }
+                        }
+                        else
+                        {
+                            var value = p.playerBoard.ShotHistory[coordinateToCheck];
+                            if (value.Equals(ShotHistory.Hit))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("  H  ");
+                                Console.ResetColor();
+                            }
+                            else if (value.Equals(ShotHistory.Miss))
+                            {
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.Write("  M  ");
+                                Console.ResetColor();
+                            }
+                            else
+                            {
+                                Console.Write("  U  ");
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if (coordinateToCheck.XCoordinate == 1)
+                        {
+                            Console.Write(y + " -  ");
+                        }
+                        else
+                        {
+                            Console.Write("  -  ");
+                        }
+                    }
+                }
+            }
+
+        }
 
     }
 }

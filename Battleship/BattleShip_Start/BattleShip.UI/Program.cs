@@ -66,6 +66,7 @@ namespace BattleShip.UI
                     {
 
                         // player 1 
+                       
                         Console.WriteLine("{0}, press enter to show your board.", wf.p1.playerName);
                         Console.ReadLine();
                         wf.ShowBoard(wf.p2);
@@ -74,6 +75,7 @@ namespace BattleShip.UI
                         var finalP1X = 0;
                         do
                         {
+                            Console.WriteLine("\n");
                             Console.WriteLine("{0}, enter your x coordinate: ", wf.p1.playerName);
                             var x = Console.ReadLine();
                             switch (x.ToUpper())
@@ -115,12 +117,14 @@ namespace BattleShip.UI
                                 Console.ReadLine();
                                 Console.Clear();
                             }
+                            wf.ShowBoard(wf.p2);
                         } while (finalP1X == 0);
 
                         var finaly = 0;
 
                         do
                         {
+                            Console.WriteLine("\n");
                             Console.WriteLine("{0}, enter your y coordinate: ", wf.p1.playerName);
                             var y = Console.ReadLine();
                             int value;
@@ -138,6 +142,7 @@ namespace BattleShip.UI
                                 Console.ReadLine();
                                 Console.Clear();
                             }
+                            wf.ShowBoard(wf.p2);
                         } while (finaly == 0); 
 
                         var turnCoordinate = new Coordinate(finalP1X, finaly);
@@ -198,6 +203,7 @@ namespace BattleShip.UI
                         do
                         {
                             Console.WriteLine("\n");
+                            
                             Console.WriteLine("{0}, enter your x coordinate: ", wf.p2.playerName);
                             var x = Console.ReadLine();
 
@@ -240,12 +246,14 @@ namespace BattleShip.UI
                                 Console.ReadLine();
                                 Console.Clear();
                             }
+                            wf.ShowBoard(wf.p1);
                         } while (finalP2X == 0);
 
                         var finaly = 0;
 
                         do
                         {
+                            Console.WriteLine("\n");
                             Console.WriteLine("{0}, enter your y coordinate: ", wf.p2.playerName);
                             var y = Console.ReadLine();
                             int value;
@@ -263,6 +271,7 @@ namespace BattleShip.UI
                                 Console.ReadLine();
                                 Console.Clear();
                             }
+                            wf.ShowBoard(wf.p1);
                         } while (finaly == 0);
 
                         var turnCoordinate = new Coordinate(finalP2X, finaly);

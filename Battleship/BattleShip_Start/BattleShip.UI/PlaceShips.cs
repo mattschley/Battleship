@@ -21,6 +21,7 @@ namespace BattleShip.UI
             for (int i = 0; i < 5; i++)
             {
                 ShipPlacement response;
+                   
                 do
                 {
                     Console.WriteLine("Place your {0} on the x axis with a letter: ", ShipToPlace.ShipType);
@@ -113,6 +114,7 @@ namespace BattleShip.UI
                     {
                         if (response == ShipPlacement.NotEnoughSpace)
                         {
+                            
                             Console.WriteLine("\nThere isn't enough room.  Try again.\n");
                             Console.ReadLine();
                         }
@@ -127,7 +129,8 @@ namespace BattleShip.UI
                     Console.Clear();
 
                     //wf.ShowBoard(wf.p1);
-                   // WorkFlowObject.ShowBoard(player);
+                   WorkFlowObject.ShowBoard1(player);
+                   Console.WriteLine("\n");
 
 
 
@@ -141,7 +144,7 @@ namespace BattleShip.UI
                 howManyShipsPlaced++;
 
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("\n\nYou've placed {0} of 5 ships so far.", howManyShipsPlaced);
+                Console.WriteLine("You've placed {0} of 5 ships so far. \n", howManyShipsPlaced);
                 Console.ResetColor();
 
             }
