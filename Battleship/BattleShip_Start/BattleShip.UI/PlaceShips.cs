@@ -16,9 +16,11 @@ namespace BattleShip.UI
         {
             PlaceShipRequest ShipToPlace = new PlaceShipRequest();
 
+            int howManyShipsPlaced = 0;
+           
             for (int i = 0; i < 5; i++)
             {
-                ShipPlacement response = ShipPlacement.NotEnoughSpace;
+                ShipPlacement response;
                 do
                 {
                     Console.WriteLine("Place your {0} on the x axis with a letter: ", ShipToPlace.ShipType);
@@ -69,7 +71,6 @@ namespace BattleShip.UI
                     else
                     {
                         new_string = 0;
-
                     }
                     //int Ycoord = int.Parse(inputYCoord);
                     int Ycoord = new_string;
@@ -102,28 +103,46 @@ namespace BattleShip.UI
 
                     response = player.playerBoard.PlaceShip(ShipToPlace);
 
-                    if (response == ShipPlacement.NotEnoughSpace)
+                    if (ShipToPlace.Coordinate.Equals(new Coordinate(0, 0)))
                     {
-                        Console.WriteLine("\nThere isn't enough room.  Try again.\n");
+                        Console.WriteLine("\nInvalid input...Make sure x is a letter, and y is a number. " +
+                                          "Press enter to try again.\n");
+                        Console.ReadLine();
                     }
-                    if (response == ShipPlacement.Overlap)
+                    else
                     {
-                        Console.WriteLine("\nThat ship overlaps another.  Please try again.\n");
+                        if (response == ShipPlacement.NotEnoughSpace)
+                        {
+                            Console.WriteLine("\nThere isn't enough room.  Try again.\n");
+                            Console.ReadLine();
+                        }
+                        else if (response == ShipPlacement.Overlap)
+                        {
+                            Console.WriteLine("\nThat ship overlaps another.  Please try again.\n");
+                            Console.ReadLine();
+                        }
                     }
                     
+                    
+                    Console.Clear();
 
-                } while (response != ShipPlacement.Ok);      
+                    //wf.ShowBoard(wf.p1);
+                   // WorkFlowObject.ShowBoard(player);
+
+
+
+                } while (response != ShipPlacement.Ok);
                 
                 ShipToPlace.ShipType++;
+                
+                Console.WriteLine("\n");
 
-                int howManyShipsPlaced = 0;
+                
                 howManyShipsPlaced++;
 
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\n\nYou've placed {0} of 5 ships so far.", howManyShipsPlaced);
                 Console.ResetColor();
-
-                Console.WriteLine("\n");
 
             }
         }

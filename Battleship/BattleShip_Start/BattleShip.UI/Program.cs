@@ -70,53 +70,75 @@ namespace BattleShip.UI
                         Console.ReadLine();
                         wf.ShowBoard(wf.p2);
                         Console.WriteLine("\n");
-                        Console.WriteLine("{0}, enter your x coordinate: ", wf.p1.playerName);
-                        var x = Console.ReadLine();
+
                         var finalP1X = 0;
-
-                        switch (x.ToUpper())
+                        do
                         {
-                            case "A":
-                                finalP1X = 1;
-                                break;
-                            case "B":
-                                finalP1X = 2;
-                                break;
-                            case "C":
-                                finalP1X = 3;
-                                break;
-                            case "D":
-                                finalP1X = 4;
-                                break;
-                            case "E":
-                                finalP1X = 5;
-                                break;
-                            case "F":
-                                finalP1X = 6;
-                                break;
-                            case "G":
-                                finalP1X = 7;
-                                break;
-                            case "H":
-                                finalP1X = 8;
-                                break;
-                            case "I":
-                                finalP1X = 9;
-                                break;
-                            case "J":
-                                finalP1X = 10;
-                                break;
-                        }
+                            Console.WriteLine("{0}, enter your x coordinate: ", wf.p1.playerName);
+                            var x = Console.ReadLine();
+                            switch (x.ToUpper())
+                            {
+                                case "A":
+                                    finalP1X = 1;
+                                    break;
+                                case "B":
+                                    finalP1X = 2;
+                                    break;
+                                case "C":
+                                    finalP1X = 3;
+                                    break;
+                                case "D":
+                                    finalP1X = 4;
+                                    break;
+                                case "E":
+                                    finalP1X = 5;
+                                    break;
+                                case "F":
+                                    finalP1X = 6;
+                                    break;
+                                case "G":
+                                    finalP1X = 7;
+                                    break;
+                                case "H":
+                                    finalP1X = 8;
+                                    break;
+                                case "I":
+                                    finalP1X = 9;
+                                    break;
+                                case "J":
+                                    finalP1X = 10;
+                                    break;
+                            }
+                            if (finalP1X == 0)
+                            {
+                                Console.WriteLine("\nInvalid inuput, press enter to try again.\n");
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+                        } while (finalP1X == 0);
 
-                        Console.WriteLine("{0}, enter your y coordinate: ", wf.p1.playerName);
-                        var y = Console.ReadLine();
                         var finaly = 0;
-                        int value;
-                        if (int.TryParse(y, out value))
+
+                        do
                         {
-                            finaly = value;
-                        }
-                        else { finaly = 0; }
+                            Console.WriteLine("{0}, enter your y coordinate: ", wf.p1.playerName);
+                            var y = Console.ReadLine();
+                            int value;
+                            if (int.TryParse(y, out value))
+                            {
+                                finaly = value;
+                            }
+                            else
+                            {
+                                finaly = 0;
+                            }
+                            if (finaly == 0)
+                            {
+                                Console.WriteLine("\nInvalid inuput, press enter to try again.\n");
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+                        } while (finaly == 0); 
 
                         var turnCoordinate = new Coordinate(finalP1X, finaly);
 
@@ -125,19 +147,25 @@ namespace BattleShip.UI
 
                         if (turnResponse.ShotStatus == ShotStatus.Hit)
                         {
+                            wf.ShowBoard(wf.p2);
                             Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\n");
                             Console.WriteLine("You hit something!");
                             Console.ResetColor();
                         }
                         else if (turnResponse.ShotStatus == ShotStatus.Miss)
                         {
+                            wf.ShowBoard(wf.p2);
                             Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("\n");
                             Console.WriteLine("Your projectile splashes into the ocean, you missed!");
                             Console.ResetColor();
                         }
                         else if (turnResponse.ShotStatus == ShotStatus.HitAndSunk)
                         {
+                            wf.ShowBoard(wf.p2);
                             Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("\n");
                             Console.WriteLine("You sank your opponent's {0}", turnResponse.ShipImpacted);
                             Console.ResetColor();
                         }
@@ -145,7 +173,7 @@ namespace BattleShip.UI
 
                     }
 
-                    wf.ShowBoard(wf.p2);
+                   
 
                     Console.WriteLine("\n");
                     Console.WriteLine("Press enter to clear the board");
@@ -164,54 +192,78 @@ namespace BattleShip.UI
                         Console.WriteLine("{0}, press enter to show your board.", wf.p2.playerName);
                         Console.ReadLine();
                         wf.ShowBoard(wf.p1);
-                        Console.WriteLine("\n");
-                        Console.WriteLine("{0}, enter your x coordinate: ", wf.p2.playerName);
-                        var x = Console.ReadLine();
+
                         var finalP2X = 0;
 
-                        switch (x.ToUpper())
+                        do
                         {
-                            case "A":
-                                finalP2X = 1;
-                                break;
-                            case "B":
-                                finalP2X = 2;
-                                break;
-                            case "C":
-                                finalP2X = 3;
-                                break;
-                            case "D":
-                                finalP2X = 4;
-                                break;
-                            case "E":
-                                finalP2X = 5;
-                                break;
-                            case "F":
-                                finalP2X = 6;
-                                break;
-                            case "G":
-                                finalP2X = 7;
-                                break;
-                            case "H":
-                                finalP2X = 8;
-                                break;
-                            case "I":
-                                finalP2X = 9;
-                                break;
-                            case "J":
-                                finalP2X = 10;
-                                break;
-                        }
+                            Console.WriteLine("\n");
+                            Console.WriteLine("{0}, enter your x coordinate: ", wf.p2.playerName);
+                            var x = Console.ReadLine();
 
-                        Console.WriteLine("{0}, enter your y coordinate: ", wf.p2.playerName);
-                        var y = Console.ReadLine();
+                            switch (x.ToUpper())
+                            {
+                                case "A":
+                                    finalP2X = 1;
+                                    break;
+                                case "B":
+                                    finalP2X = 2;
+                                    break;
+                                case "C":
+                                    finalP2X = 3;
+                                    break;
+                                case "D":
+                                    finalP2X = 4;
+                                    break;
+                                case "E":
+                                    finalP2X = 5;
+                                    break;
+                                case "F":
+                                    finalP2X = 6;
+                                    break;
+                                case "G":
+                                    finalP2X = 7;
+                                    break;
+                                case "H":
+                                    finalP2X = 8;
+                                    break;
+                                case "I":
+                                    finalP2X = 9;
+                                    break;
+                                case "J":
+                                    finalP2X = 10;
+                                    break;
+                            }
+                        if (finalP2X == 0)
+                            {
+                                Console.WriteLine("\nInvalid inuput, press enter to try again.\n");
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+                        } while (finalP2X == 0);
+
                         var finaly = 0;
-                        int value;
-                        if (int.TryParse(y, out value))
+
+                        do
                         {
-                            finaly = value;
-                        }
-                        else { finaly = 0; }
+                            Console.WriteLine("{0}, enter your y coordinate: ", wf.p2.playerName);
+                            var y = Console.ReadLine();
+                            int value;
+                            if (int.TryParse(y, out value))
+                            {
+                                finaly = value;
+                            }
+                            else
+                            {
+                                finaly = 0;
+                            }
+                            if (finaly == 0)
+                            {
+                                Console.WriteLine("\nInvalid inuput, press enter to try again.\n");
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+                        } while (finaly == 0);
 
                         var turnCoordinate = new Coordinate(finalP2X, finaly);
 
@@ -220,24 +272,30 @@ namespace BattleShip.UI
 
                         if (turnResponse.ShotStatus == ShotStatus.Hit)
                         {
+                            wf.ShowBoard(wf.p1);
                             Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\n");
                             Console.WriteLine("You hit something!");
                             Console.ResetColor();
                         }
                         else if (turnResponse.ShotStatus == ShotStatus.Miss)
                         {
+                            wf.ShowBoard(wf.p1);
                             Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("\n");
                             Console.WriteLine("Your projectile splashes into the ocean, you missed!");
                             Console.ResetColor();
                         }
                         else if (turnResponse.ShotStatus == ShotStatus.HitAndSunk)
                         {
+                            wf.ShowBoard(wf.p1);
                             Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("\n");
                             Console.WriteLine("You sank your opponent's {0}", turnResponse.ShipImpacted);
                             Console.ResetColor();
                         }
                     }
-                    wf.ShowBoard(wf.p1);
+                   
 
                     Console.WriteLine("\n");
                     Console.WriteLine("Press enter to clear the board");
